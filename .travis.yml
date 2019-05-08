@@ -1,0 +1,18 @@
+sudo: false
+language: node_js
+os:
+  - linux
+  - osx
+node_js:
+  - 12
+branches:
+  only:
+  - master
+install:
+- npm install
+script:
+  - npm run lint
+  - npm run build
+  - npm run cover
+after_success:
+- npm run coveralls
