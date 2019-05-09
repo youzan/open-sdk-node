@@ -1,5 +1,5 @@
 {
-  "name": "youzanyun",
+  "name": "youzanyun-sdk",
   "version": "1.0.0",
   "description": "YouzanYun SDK for Node",
   "main": "lib/index.js",
@@ -7,8 +7,8 @@
     "build": "babel src -d lib",
     "build:watch": "npm run build -- --watch",
     "lint": "eslint --fix src --ext .js",
-    "test": "npm run build && mocha -t 5000",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
+    "test": "npm run build && mocha --recursive -t 5000",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "pre-commit": [

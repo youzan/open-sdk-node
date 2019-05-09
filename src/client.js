@@ -20,7 +20,7 @@ function call(api, version, token = null, params = {}, files = {}) {
   const urlPath = (!token) ? configHttp.getUrlAPIExempt(api, version) : configHttp.getUrlAPI(api, version, token);
 
   // 上传文件
-  if (files.size > 0) {
+  if (!files && files.size > 0) {
     return utilHttp.upload(urlPath, files);
   }
 
