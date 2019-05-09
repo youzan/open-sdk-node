@@ -1,7 +1,11 @@
 
 function toObj(map) {
   const obj = {};
-  map.forEach((v, k) => { obj[k] = v; });
+  if (map.size > 0) {
+    map.forEach((v, k) => {
+      obj[k] = v;
+    });
+  }
   return obj;
 }
 

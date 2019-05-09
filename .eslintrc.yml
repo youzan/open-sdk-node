@@ -8,4 +8,5 @@ globals:
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
-rules: {}
+rules: 
+  max-len: [2, {"code": 120, "tabWidth": 2, "ignoreUrls": true}]
