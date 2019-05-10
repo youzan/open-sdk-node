@@ -78,6 +78,16 @@ resp1.then((data) => {
 });
 ```
 
+### 3. 消息解密
+
+```node
+const youzanyun = require('youzanyun-sdk');
+const messages = 'YOUR_RECEIVED_MESSAGES';
+const clientSecret = 'YOUR_CLIENT_SECRET';
+
+const data = youzanyun.crypto.decrypt(messages, clientSecret);
+console.log(data);
+```
 
 ## License
 
