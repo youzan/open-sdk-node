@@ -2,17 +2,16 @@ YouzanYun SDK
 =======
 
 [![NPM Version](https://img.shields.io/npm/v/youzanyun-sdk.svg?style=flat)](https://www.npmjs.com/package/youzanyun-sdk)
-[![Build Status](https://travis-ci.org/youzan/open-sdk-node.png)](https://travis-ci.org/youzan/open-sdk-node)
-[![Coverage Status](https://img.shields.io/coveralls/youzan/open-sdk-node/master.svg?style=flat)](https://coveralls.io/github/youzan/open-sdk-node?branch=master)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Downloads](https://img.shields.io/npm/dt/youzanyun-sdk.svg)]()
-[![Software License][ico-license]](LICENSE.md)
+[![Build Status](https://travis-ci.org/youzan/open-sdk-node.png)](https://travis-ci.org/youzan/open-sdk-node)
 
 YouzanYun SDK for Node.  
 
 ## Install
 
 ```bash
-$ npm install youzanyun-sdk --save
+$ npm i youzanyun-sdk --save
 ```
 
 ## Usage
@@ -54,10 +53,7 @@ const youzanyun = require('youzanyun-sdk');
 const token = 'f59b1a6bb04f4eqweqd1c6af315d';
 const params = {tid: 'E20190509110527067500013'};
 
-const resp1 = youzanyun.client.call('youzan.trade.get', '4.0.0', token, params);
-resp1.then((data) => {
-  console.log(data);
-});
+const resp = youzanyun.client.call('youzan.trade.get', '4.0.0', token, params);
 ```
 
 #### 文件上传
@@ -75,11 +71,11 @@ const resp = youzanyun.client.call('youzan.materials.storage.platform.img.upload
 
 ```node
 const youzanyun = require('youzanyun-sdk');
+
 const messages = 'YOUR_RECEIVED_MESSAGES';
 const clientSecret = 'YOUR_CLIENT_SECRET';
 
-const data = youzanyun.crypto.decrypt(messages, clientSecret);
-console.log(data);
+const resp = youzanyun.crypto.decrypt(messages, clientSecret);
 ```
 
 ## License

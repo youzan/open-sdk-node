@@ -4,6 +4,7 @@ os:
   - linux
   - osx
 node_js:
+  - 8
   - 12
 branches:
   only:
@@ -14,5 +15,3 @@ script:
   - npm run lint
   - npm run build
   - npm run cover
-after_success:
-  - npm run coveralls
