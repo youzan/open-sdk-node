@@ -10,8 +10,11 @@ const utilHttp = require('./utils/http');
  * @param {Object} 接口调用参数 {api:'youzan.trade.get', version:'3.0.0', token:'dddd', params:{}, files:{}}
  */
 function call(apiParam) {
-  if (!_.has(apiParam, 'api') || !_.has(apiParam, 'version')) {
-    throw new Error('参数异常: api version 必传');
+  if (!_.has(apiParam, 'api')) {
+    throw new Error('参数异常: api 必传');
+  }
+  if (!_.has(apiParam, 'version')) {
+    throw new Error('参数异常: version 必传');
   }
 
   let urlPath;

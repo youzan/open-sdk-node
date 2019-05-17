@@ -5,7 +5,8 @@
 
 const youzanyun = require('../src/index');
 
-const resp = youzanyun.token.get('silent', {
+const resp = youzanyun.token.get({
+  authorize_type: 'silent',
   grant_id: 110,
   client_id: 'YOUR_CLIENT_ID',
   client_secret: 'YOUR_CLIENT_SECRET',
