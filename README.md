@@ -49,7 +49,7 @@ const resp = youzanyun.token.get({
 
 // 刷新token
 const resp = youzanyun.token.get({
-  authorize_type: 'authorization_code',
+  authorize_type: 'refresh_token',
   client_id: 'YOUR_CLIENT_ID',
   client_secret: 'YOUR_CLIENT_SECRET',
   refresh_token: 'YOUR_REFRESH_TOKEN',
@@ -70,9 +70,7 @@ const resp = youzanyun.client.call({
   api: 'youzan.trade.get',
   version: '4.0.0',
   token,
-  params: {
-    tid: 'E20190509110527067500013',
-  },
+  params,
 });
 ```
 

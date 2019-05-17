@@ -1,6 +1,6 @@
 {
   "name": "youzanyun-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "YouzanYun SDK for Node",
   "main": "src/index.js",
   "scripts": {
