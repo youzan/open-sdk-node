@@ -2,12 +2,10 @@
   "name": "youzanyun-sdk",
   "version": "1.0.0",
   "description": "YouzanYun SDK for Node",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "babel src -d lib",
-    "build:watch": "npm run build -- --watch",
     "lint": "eslint --fix src --ext .js",
-    "test": "npm run build && mocha --recursive -t 5000",
+    "test": "mocha --recursive -t 5000",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
@@ -30,9 +28,13 @@
   "bugs": {
     "url": "https://github.com/youzan/open-sdk-node/issues"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "form-data": "^2.3.3",
+    "lodash": "^4.17.11",
     "qs": "^6.7.0"
   },
   "devDependencies": {

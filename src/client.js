@@ -1,4 +1,5 @@
 
+const _ = require('lodash');
 const configHttp = require('./config/http');
 const utilHttp = require('./utils/http');
 
@@ -6,26 +7,31 @@ const utilHttp = require('./utils/http');
 /**
  * 发起接口调用
  *
- * @param {String} api 接口名. 示例: 'youzan.trade.get'
- * @param {String} version 接口版本号. 示例: '4.0.0'
- * @param {String} token 授权AccessToken(绝大部分接口必选,无鉴权接口可选). 示例: 'f59b1a6bb04f4c31ba86589as3af315d'
- * @param {Map<String, V>} params 接口传参(可选). 示例: {"tid": "E201904301841152042200008"}
- * @param {Map<String, String>} files 上传文件参数(可选). value为绝对路径. 示例: {"image": "/path/to/filename.jpg"}
+ * @param {Object} 接口调用参数 {api:'youzan.trade.get', version:'3.0.0', token:'dddd', params:{}, files:{}}
  */
-function call(api, version, token = null, params = {}, files = {}) {
-  if (!api || !version) {
+function call(apiParam) {
+  if (!_.has(apiParam, 'api') || !_.has(apiParam, 'version')) {
     throw new Error('参数异常: api version 必传');
   }
 
-  const urlPath = (!token) ? configHttp.getUrlAPIExempt(api, version) : configHttp.getUrlAPI(api, version, token);
+  let urlPath;
+  if (_.has(apiParam, 'token')) {
+    urlPath = configHttp.getUrlAPI(apiParam.api, apiParam.version, apiParam.token);
+  } else {
+    urlPath = configHttp.getUrlAPIExempt(apiParam.api, apiParam.version);
+  }
+
+  if (_.has(apiParam, 'host')) {
+    urlPath = apiParam.host + urlPath;
+  }
 
   // 上传文件
-  if (!files && files.size > 0) {
-    return utilHttp.upload(urlPath, files);
+  if (_.has(apiParam, 'files') && _.size(apiParam.files) > 0) {
+    return utilHttp.upload(urlPath, apiParam.files);
   }
 
   // 普通调用
-  return utilHttp.post(urlPath, params);
+  return utilHttp.post(urlPath, apiParam.params);
 }
 
 module.exports = {

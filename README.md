@@ -21,27 +21,27 @@ $ npm install youzanyun-sdk --save
 
 ### 1. 获取 accessToken
 
-#### 工具型应用
-
-```node
-const youzanyun = require('youzanyun-sdk');
-
-const params = new Map();
-params.set('grant_id', 110);
-params.set('client_id', 'YOUR_CLIENT_ID');
-params.set('client_secret', 'YOUR_CLIENT_SECRET');
-const tokenPromise = youzanyun.token.get('silent', params);
-```
-
 #### 自用型应用
 
 ```node
 const youzanyun = require('youzanyun-sdk');
 
-const params = new Map();
-params.set('code', 'YOUR_CODE');
-params.set('redirect_uri', 'YOUR_REDIRECT_URI');
-const tokenPromise = youzanyun.token.get('authorization_code', params);
+const resp = youzanyun.token.get('silent', {
+  grant_id: 110,
+  client_id: 'YOUR_CLIENT_ID',
+  client_secret: 'YOUR_CLIENT_SECRET',
+});
+```
+
+#### 工具型应用
+
+```node
+const youzanyun = require('youzanyun-sdk');
+
+const resp = youzanyun.token.get('authorization_code', {
+  code: 'YOUR_CODE'YOUR_CODE,
+  redirect_uri: 'YOUR_REDIRECT_URI',
+});
 ```
 
 ### 2. 接口调用
@@ -52,9 +52,7 @@ const tokenPromise = youzanyun.token.get('authorization_code', params);
 const youzanyun = require('youzanyun-sdk');
 
 const token = 'f59b1a6bb04f4eqweqd1c6af315d';
-
-const params = new Map();
-params.set('tid', 'E20190509110527067500013');
+const params = {tid: 'E20190509110527067500013'};
 
 const resp1 = youzanyun.client.call('youzan.trade.get', '4.0.0', token, params);
 resp1.then((data) => {
@@ -68,14 +66,9 @@ resp1.then((data) => {
 const youzanyun = require('youzanyun-sdk');
 
 const token = 'f59b1a6bb0asdasq613d1c6af315d';
+const files = {'image': path.resolve(__dirname, './pic.png')};
 
-const files = new Map();
-files.set('image', path.resolve(__dirname, './pic.png'));
-
-const resp1 = youzanyun.client.call('youzan.materials.storage.platform.img.upload', '3.0.0', token, {}, files);
-resp1.then((data) => {
-  console.log(data);
-});
+const resp = youzanyun.client.call('youzan.materials.storage.platform.img.upload', '3.0.0', token, {}, files);
 ```
 
 ### 3. 消息解密

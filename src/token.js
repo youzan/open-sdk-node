@@ -2,6 +2,7 @@
 // 获取Token可选的type类型枚举
 const types = ['silent', 'authorization_code', 'refresh_token'];
 
+const _ = require('lodash');
 const configHttp = require('./config/http');
 const utilHttp = require('./utils/http');
 
@@ -19,46 +20,51 @@ const utilHttp = require('./utils/http');
  * type = refresh_token, 必传 refresh_token
  *
  * @param {String} type 授权类型
- * @param {Map<String, String>} params 参数
+ * @param {Object} params 参数
  */
-function get(type, params = {}) {
+function get(type, params) {
+  // 参数类型校验
   if (!type || !types.includes(type)) {
     throw new Error('参数异常: type类型错误');
   }
 
-  if (params.size < 1) {
+  if (_.size(params, 'size') < 1) {
     throw new Error('参数异常: params不可为空');
   }
 
-  if (!params.has('client_id') || !params.has('client_secret')) {
+  if (!_.has(params, 'client_id') || !_.has(params, 'client_secret')) {
     throw new Error('参数异常: client_id client_secret 必传');
   }
-
-  params.set('authorize_type', type);
 
   // 参数校验
   switch (type) {
     case 'silent':
-      if (!params.has('grant_id')) {
+      if (!_.has(params, 'grant_id')) {
         throw new Error('参数异常: grant_id 必传');
       }
       break;
     case 'authorization_code':
-      if (!params.has('code') || !params.has('redirect_uri')) {
+      if (!_.has(params, 'code') || !_.has(params, 'redirect_uri')) {
         throw new Error('参数异常: code redirect_uri 必传');
       }
       break;
     case 'refresh_token':
-      if (!params.has('refresh_token')) {
+      if (!_.has(params, 'refresh_token')) {
         throw new Error('参数异常: refresh_token 必传');
       }
-      params.set('scope', 'scope');
       break;
     default:
       break;
   }
 
-  return utilHttp.post(configHttp.getUrlToken(), params);
+  let urlPath = configHttp.getUrlToken();
+  if (_.has(params, 'host')) {
+    urlPath = params.host + urlPath;
+  }
+
+  params.authorize_type = type;
+
+  return utilHttp.post(urlPath, params);
 }
 
 module.exports = {
