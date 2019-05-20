@@ -5,6 +5,7 @@ YouzanYun SDK
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Downloads](https://img.shields.io/npm/dt/youzanyun-sdk.svg)]()
 [![Build Status](https://travis-ci.org/youzan/open-sdk-node.png)](https://travis-ci.org/youzan/open-sdk-node)
+[![Coverage Status](https://coveralls.io/repos/github/youzan/open-sdk-node/badge.svg?branch=master)](https://coveralls.io/github/youzan/open-sdk-node?branch=master)
 
 YouzanYun SDK for Node.  
 
