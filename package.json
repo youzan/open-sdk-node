@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --fix src --ext .js",
     "test": "mocha --recursive -t 5000",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive"
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "pre-commit": [
     "lint"
