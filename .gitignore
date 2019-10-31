@@ -132,3 +132,4 @@ typings/
 # DIY
 debug.js
 package-lock.json
+.idea
