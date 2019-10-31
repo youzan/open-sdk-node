@@ -15,7 +15,11 @@ function getUrlAPIExempt(api, version) {
   return `/api/auth_exempt/${api}/${version}`;
 }
 
+function getUrlTextArea(api, version) {
+  return `/api/_textarea_/${api}/${version}`;
+}
+
 
 module.exports = {
-  getBaseUrl, getUrlToken, getUrlAPI, getUrlAPIExempt,
+  getBaseUrl, getUrlToken, getUrlAPI, getUrlAPIExempt, getUrlTextArea,
 };

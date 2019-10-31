@@ -7,7 +7,7 @@ const utilHttp = require('./utils/http');
 /**
  * 发起接口调用
  *
- * @param {Object} 接口调用参数 {api:'youzan.trade.get', version:'3.0.0', token:'dddd', params:{}, files:{}}
+ * @param apiParam {Object} 接口调用参数 {api:'youzan.trade.get', version:'3.0.0', token:'dddd', params:{}, files:{}}
  */
 function call(apiParam) {
   if (!_.has(apiParam, 'api')) {
@@ -20,6 +20,9 @@ function call(apiParam) {
   let urlPath;
   if (_.has(apiParam, 'token')) {
     urlPath = configHttp.getUrlAPI(apiParam.api, apiParam.version, apiParam.token);
+    if (_.has(apiParam, 'config.isRichText') && apiParam.config.isRichText) {
+      urlPath = configHttp.getUrlTextArea(apiParam.api, apiParam.version, apiParam.token);
+    }
   } else {
     urlPath = configHttp.getUrlAPIExempt(apiParam.api, apiParam.version);
   }
