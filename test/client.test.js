@@ -51,4 +51,17 @@ describe('test client', () => {
       },
     })).to.be.an.instanceof(Function);
   });
+
+  it('call for rich text', () => {
+    chai.expect(() => client.call({
+      api: 'youzan.shop.get',
+      version: '3.0.0',
+      params: {
+        id: 'aa',
+      },
+      config: {
+        isRichText: true,
+      },
+    })).to.be.an.instanceof(Function);
+  });
 });
