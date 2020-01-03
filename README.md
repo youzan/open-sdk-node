@@ -19,22 +19,9 @@ npm i youzanyun-sdk --save
 
 可参考 [examples](examples)  
 
-### 1. 获取 accessToken
+### 1. 获取及刷新access_token
 
-#### 自用型应用
-
-```node
-const youzanyun = require('youzanyun-sdk');
-
-const resp = youzanyun.token.get({
-  authorize_type: 'silent',
-  client_id: 'YOUR_CLIENT_ID',
-  client_secret: 'YOUR_CLIENT_SECRET',
-  grant_id: 110,
-});
-```
-
-#### 工具型应用
+#### 工具型应用 获取access_token
 
 ```node
 const youzanyun = require('youzanyun-sdk');
@@ -47,6 +34,26 @@ const resp = youzanyun.token.get({
   code: 'YOUR_CODE',
   redirect_uri: 'YOUR_REDIRECT_URI',
 });
+```
+
+#### 自用型应用 获取access_token
+
+```node
+const youzanyun = require('youzanyun-sdk');
+
+const resp = youzanyun.token.get({
+  authorize_type: 'silent',
+  client_id: 'YOUR_CLIENT_ID',
+  client_secret: 'YOUR_CLIENT_SECRET',
+  grant_id: 110,
+  refresh: true, // 是否获取refresh_token(可通过refresh_token刷新token)
+});
+```
+
+#### 工具型应用及自用型应用 刷新access_token
+
+```node
+const youzanyun = require('youzanyun-sdk');
 
 // 刷新token
 const resp = youzanyun.token.get({
