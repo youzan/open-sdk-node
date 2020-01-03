@@ -15,7 +15,7 @@ const utilHttp = require('./utils/http');
  *
  * 自用型应用获取Token: authorize_type = silent, 必传 grant_id
  * 工具型应用获取Token: authorize_type = authorization_code, 必传 code redirect_uri
- * 工具型应用刷新Token: authorize_type = refresh_token, 必传 refresh_token
+ * 工具型应用/自用型应用刷新Token: authorize_type = refresh_token, 必传 refresh_token
  */
 function get(tokenParam) {
   // 参数类型校验

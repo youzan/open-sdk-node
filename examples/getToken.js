@@ -10,6 +10,7 @@ const resp = youzanyun.token.get({
   grant_id: 110,
   client_id: 'YOUR_CLIENT_ID',
   client_secret: 'YOUR_CLIENT_SECRET',
+  refresh: true, // 是否获取refresh_token(可通过refresh_token刷新token)
 });
 
 resp.then((data) => {
